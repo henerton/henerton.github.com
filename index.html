@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Henerton School</title>
+		<link id="favicon" rel="shortcut icon" href="icon.png"/>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<script>
+			var currentQuote = 0;
+			var quotesLength = 0;
+			var quotesButtons;
+			var quotesContainer;
+			var quoteInterval;
+
+			window.onload = function() {
+				// Setup the quotes slider
+				var quotesPage = document.getElementById('quotes-page');
+				quotesContainer = document.getElementById('quotes-container');
+				var quotes = quotesContainer.getElementsByClassName('quote');
+				
+				var quotesSlider = document.createElement('div');
+				quotesSlider.id = 'quotes-slider';
+				quotesLength = quotes.length;
+				for(var i = 0; i < quotesLength; i++) {
+					var quoteSliderButton = document.createElement('div');
+					quoteSliderButton.className = 'quote-slider-button';
+					if(i == 0) {
+						addClass(quoteSliderButton, 'slider-active');
+					}
+					quoteSliderButton.dataset.slide = i;
+					quoteSliderButton.addEventListener('click', gotoQuote, false);
+					quotesSlider.appendChild(quoteSliderButton);
+
+					quotes[i].style.width = (100/quotesLength)+'%';
+				}
+				quotesPage.appendChild(quotesSlider);
+
+				quotesContainer.style.width = (quotesLength*100)+'%';
+
+				quotesButtons = quotesSlider.getElementsByClassName('quote-slider-button');
+				
+				quoteInterval = window.setInterval(nextQuote, 5000);
+			};
+
+			function nextQuote() {
+				currentQuote++;
+				if(currentQuote >= quotesLength) {
+					currentQuote = 0;
+				}
+				loadQuote();
+			}
+
+			function gotoQuote() {
+				currentQuote = parseInt(this.dataset.slide);
+				clearInterval(quoteInterval);
+				quoteInterval = setInterval(nextQuote, 5000);
+				loadQuote();
+			}
+
+			function loadQuote() {
+				for(var i = 0; i < quotesLength; i++) {
+					if(i == currentQuote) {
+						addClass(quotesButtons[i], 'slider-active');
+					} else {
+						removeClass(quotesButtons[i], 'slider-active');
+					}
+				}
+				quotesContainer.style.marginLeft = -(currentQuote*100)+'%';
+			}
+
+
+
+			function addClass(element, classList) {
+				var classes = classList.split(" ");
+				for(var i=0, l=classes.length; i<l; i++) {
+					if(!this.hasClass(element, classes[i])) {
+						element.className = element.className+' '+classes[i];
+					}
+				}
+			}
+			function removeClass(element, classList) {
+				var result = element.className;
+				var classes = classList.split(" ");
+				for(var i=0, l=classes.length; i<l; i++) {
+					if(this.hasClass(element, classes[i])) {
+						result = (' '+result+' ').replace((' '+classes[i]+' '),' ');
+					}
+				}
+				result = result.replace(/ {2,}/g,' ');
+				element.className = result;
+			}
+			function hasClass(element, classTo) {
+				return ((' '+element.className+' ').indexOf(' '+classTo+' ') > -1);
+			}
+		</script>
+		
+	</head>
+	<body>
+		<header>
+			<div id="menu">
+				<a id="logo" href="./">Henerton School</a><!--
+				--><ul><!--
+					--><li><a href="./">Home</a></li><!--
+					--><li><a href="./about">About Us</a></li><!--
+					--><li><a href="./admission">Admission</a></li><!--
+					--><li><a href="./academics">Academics</a></li><!--
+					--><li><a href="./athletics">Athletics</a></li><!--
+					--><li><a href="./school">School Life</a></li><!--
+					--><li><a href="./contact">Contact Us</a></li><!--
+					--><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+					--><li><a href="./index.fr.html">FR</a></li><!--
+					--><li><a href="./index.html">EN</a></li>
+				</ul>
+					<br />
+					<input id="search" type="text" placeholder="Search" />
+				
+			</div>
+			
+			<div id="subheader">
+				<div id="subheader-container"><!--
+					--><a href="./school/">School</a> | <a href="./formations/">Formations</a> | <a href="./research/">Research</a> | <a href="./entrepreneurship/">Entrepreneurship & Innovation</a> | <a href="./international/">International</a> | <a href="./companies/">Companies</a> | <a href="./campus/">Campus</a>
+					
+					<div id="subheader-right"><a href="./login/">Login</a></div>
+					<div id="subheader-right"><a href="./signup/">Signup</a></div>
+					
+				</div>
+			</div>
+		</header>
+		
+		<div id="slider">
+			<div id="hue"></div>
+			<div id="slider-text">
+				<div>
+					<img src="images/news-493.jpg">
+					<h2>15.05.2018</h2>
+					<a href="./news/493/?The_rise_and_fall_of_crypto-currencies_in_classical_investment_markets">The rise and fall of crypto-currencies in classical investment markets</a>
+				</div>
+				<div>
+					<img src="images/news-492.jpg">
+					<h2>04.05.2018</h2>
+					<a href="./news/492/?Biological_and_mechanical_analysis_of_the_Human-cell_life_cycle">Biological and mechanical analysis of the Human-cell life cycle</a>
+				</div>
+				<div>
+					<img src="images/news-491.jpg">
+					<h2>25.04.2018</h2>
+					<a href="./news/491/?An_introduction_to_Topological_Mechanical_Metamaterials">An introduction to Topological Mechanical Metamaterials</a>
+				</div>
+				<div class="thrice">
+					<span>
+						<h2>18.04.2018</h2>
+						<a href="./news/490/?A_week_of_Datascience_and_Artifical_Intelligence_conferences_at_Henerton">A week of Datascience and Artifical Intelligence conferences at Henerton</a>
+					</span>
+					<span>
+						<h2>11.04.2018</h2>
+						<a href="./news/489/?About_congruence_of_pseudorandom_number_generator_with_modern_hardware">About congruence of pseudorandom number generator with modern hardware</a>
+					</span>
+					<span>
+						<h2>4.04.2018</h2>
+						<a href="./news/488/?Summer_school_on_evolution_in_the_analytical_apparatus_and_theories_from_HFT">Summer school on evolution in the analytical apparatus and theories from HFT</a>
+					</span>
+				</div>
+			</div>
+		</div>
+		
+	
+		<div id="featured">
+			<div>
+				<img src="images/art-1.jpg" />
+				<h2>April 24, 2018</h2>
+				<h1>Writing Seminary</h1>
+				<p>Start to write a text each day.</p>
+				<span><a href="./news/490/?Start to write a text each day">Read More</a></span>
+			</div>
+			<div>
+				<img src="images/art-2.jpg" />
+				<h2>March 16, 2018</h2>
+				<h1>Workshop: GCSE Japanese Architecture</h1>
+				<p>Discover the Japanese Architecture from the XV century to nowaday.</p>
+				<span><a href="./news/492/?Discover the Japanese Architecture from the XV century to nowaday">Read More</a></span>
+			</div>
+			<div>
+				<img src="images/art-3.jpg" />
+				<h2>February 28, 2018</h2>
+				<h1>Finance Market Data Science</h1>
+				<p>Get an advanced course on data-science from Finance Experts.</p>
+				<span><a href="./news/493/?Get an advanced course on data-science from Finance Experts">Read More</a></span>
+			</div>
+		</div>
+
+		<div id="welcome">
+			<div id="welcome-block">
+				
+				<p>Henerton School prides itself on offering a supportive learning environment and teaching quality.</p>
+				<div id="w-co">
+					<div>
+						<h2>Graduated</h2>
+						<p>120 000+</p>
+						<img src="images/icon-1.png" />
+					</div>
+					<div>
+						<h2>Majors</h2>
+						<p>24</p>
+						<img src="images/icon-4.png" />
+					</div>
+					<div>
+						<h2>Class Rooms</h2>
+						<p>132+</p>
+						<img src="images/icon-3.png" />
+					</div>
+					<div>
+						<h2>Students</h2>
+						<p>3820+</p>
+						<img src="images/icon-2.png" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="events">
+			<h1>Upcoming Events</h1>
+			<div id="events-container">
+				<div>
+					<img src="images/ev-1.jpg" />
+					<span>
+						<h2>Frontiers of Fifteenth Century Art</h2>
+						<h3>May 30, 2018</h3>
+						<h4>Henerton School</h4>
+						<a href="./news/"></a>
+					</span>
+				</div>
+				<div>
+					<img src="images/ev-2.jpg" />
+					<span>
+						<h2>The Economics of Education</h2>
+						<h3>March 4, 2018</h3>
+						<h4>Student Center of Zurich</h4>
+						<a href="./news/"></a>
+					</span>
+				</div>
+				<div>
+					<img src="images/ev-3.jpg" />
+					<span>
+						<h2>Summer Youth Career Exposure</h2>
+						<h3>May 2, 2018</h3>
+						<h4>Henerton School</h4>
+						<a href="./news/"></a>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<!--
+		<div id="news">
+			<form id="news-menu">
+				<input type="radio" value="news" name="news" id="news-button" checked />
+				<label id="news-button" for="news-button">News</label>
+				<input type="radio" value="engage" name="news" id="engage-button" />
+				<label id="engage-button" for="engage-button">Engage</label>
+				<input type="radio" value="calendar" name="news" id="calendar-button" />
+				<label id="calendar-button" for="calendar-button">Calendar</label>
+
+				<div id="news-container">
+					<h1>What’s Happening at Henerton School</h1>
+					<div id="news-list">
+						<div class="news-block">
+							<a href="article_1.html"><img src="images/1.jpg" /></a>
+							<div><a href="article_1.html">SAS Celebrates the Holidays with a Bevy of Arts Performances</a></div>
+						</div>
+						<div class="news-block">
+							<a href="article_2.html"><img src="images/2.jpg" /></a>
+							<div><a href="article_2.html">"Make Math Magical Again": SAS Math Faculty Bowman Dickson Presents Creative Curriculum Hacks at NCTM Conference</a></div>
+						</div>
+						<div class="news-block">
+							<a href="article_3.html"><img src="images/3.jpg" /></a>
+							<div><a href="article_3.html">Student Vestry Fundraises for Henerton's Family Affected by Hurricane Maria</a></div>
+						</div>
+					</div>
+				</div>
+
+				<div id="engage-container">
+					<h1>Stay Involved with Henerton</h1>
+					<div id="engage-list">
+						<div class="engage-block">
+							<a href="article_1.html" class="engage-link"><img src="images/e1.jpg" /></a>
+							<div><a href="article_1.html">Join Us for Women's Network Weekend 2017</a></div>
+						</div>
+						<div class="engage-block">
+							<a href="article_2.html" class="engage-link"><img src="images/e2.jpg" /></a>
+							<div><a href="article_2.html">Give to the Saints Fund</a></div>
+						</div>
+						<div class="engage-block">
+							<a href="article_3.html" class="engage-link"><img src="images/e3.png" /></a>
+							<div><a href="article_3.html">Spend a Week in the Life of a Student</a></div>
+						</div>
+						<div class="engage-block">
+							<a href="article_3.html" class="engage-link"><img src="images/e4.jpg" /></a>
+							<div><a href="article_3.html">Search the School Archives</a></div>
+						</div>
+						<div class="engage-block">
+							<a href="article_3.html" class="engage-link"><img src="images/e5.jpg" /></a>
+							<div><a href="article_3.html">Follow Us On Instagram</a></div>
+						</div>
+					</div>
+				</div>
+
+				<div id="calendar-container">
+					<h1>Our Upcoming Events</h1>
+					<div id="calendar-list">
+						<div class="calendar-block">
+							<h2>Tue Jan 2</h2>
+							<h3>Winter Athletic Preseason Begins</h3>
+							<hr />
+							<div class="calendar-date">1:00 PM - 3:00 PM</div>
+							<div class="calendar-location">Henerton's School</div>
+							<a class="calendar-more" href="#">Read More</a>
+						</div>
+						<div class="calendar-block">
+							<h2>Wed Jan 3</h2>
+							<h3>Winter Break Ends</h3>
+							<hr />
+							<div class="calendar-date">6:00 PM</div>
+							<div class="calendar-location"></div>
+							<a class="calendar-more" href="#">Read More</a>
+						</div>
+						<div class="calendar-block">
+							<h2>Fri Jan 12</h2>
+							<h3>Haroldson Masterclass Concert</h3>
+							<hr />
+							<div class="calendar-date">8:00 PM - 9:00 PM</div>
+							<div class="calendar-location">Engelhard Hall</div>
+							<a class="calendar-more" href="#">Read More</a>
+						</div>
+						<div class="calendar-block">
+							<h2>Fri Jan 19</h2>
+							<h3>Warner Gallery Opening</h3>
+							<hr />
+							<div class="calendar-date">all day</div>
+							<div class="calendar-location"></div>
+							<a class="calendar-more" href="#">Read More</a>
+						</div>
+						<div class="calendar-block">
+							<h2>Wed Jan 24</h2>
+							<h3>First Semester Exams Begin</h3>
+							<hr />
+							<div class="calendar-date">all day</div>
+							<div class="calendar-location"></div>
+							<a class="calendar-more" href="#">Read More</a>
+						</div>
+						<div class="calendar-block">
+							<h2>Sat Jan 27</h2>
+							<h3>Winter Long Weekend Begins</h3>
+							<hr />
+							<div class="calendar-date">all day</div>
+							<div class="calendar-location"></div>
+							<a class="calendar-more" href="#">Read More</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		-->
+		<div id="testimonies">
+			<h1>Student Testimonies</h1>
+			<div id="testimonies-slider">
+
+				<div id="quotes-page">
+					<div id="quotes-container">
+						<div class="quote">
+							<div class="quote-text">Henerton allowed me to find an internship with a leader in wireless communication industry and collaborating closely with a team of experts.</div>
+							<div class="quote-author">Richard D.</div>
+						</div><!--
+						--><div class="quote">
+							<div class="quote-text">I've been an exchange student at Henerton for a year and would recommend this school to anyone looking forward to be an engineer.</div>
+							<div class="quote-author">Sarah L.</div>
+						</div><!--
+						--><div class="quote">
+							<div class="quote-text">I would like to say thank you to all the professors and staff.</div>
+							<div class="quote-author">Daisy J.</div>
+						</div><!--
+						--><div class="quote">
+							<div class="quote-text">This school gave me exceptionnal opportunities. At the end of my studies I was able to get an internship at Google and have been working there since.</div>
+							<div class="quote-author">Ludivine B.</div>
+						</div><!--
+						--><div class="quote">
+							<div class="quote-text">Henerton enabled me to explore my interests in applying computer science to support scientific research in the fields of biology and medicine, and learn a lot along the way. I enjoyed very much my time at the school.</div>
+							<div class="quote-author">Maxim D.</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div id="partners">
+			<h1>Some of the School Partners and Supporters</h1>
+			<hp>Great work can only come from great partnerships.</hp>
+			<div id="partners-block">
+				<div style="background: url('images/uzh-logo.svg') center center no-repeat; background-size: 100%;"></div>
+				<div style="background: url('images/cern-logo.png') center center no-repeat; background-size: 60%;"></div>
+				<div style="background: url('images/epfl-logo.png') center center no-repeat; background-size: 90%;"></div>
+				<div style="background: url('images/univ-geneve-logo.png') center center no-repeat; background-size: 100%;"></div>
+				<div style="background: url('images/cnrs-logo.svg') center center no-repeat; background-size: 100%;"></div>
+			</div>
+			<div id="partners-block">
+				<div style="background: url('images/polytechnique-logo.jpg') center center no-repeat; background-size: 100%;"></div>
+				<div style="background: url('images/polito-logo.png') center center no-repeat; background-size: 100%;"></div>
+				<div style="background: url('images/clausthal-logo.png') center center no-repeat; background-size: 100%;"></div>
+				<div style="background: url('images/poytechnique-montreal-logo.png') center center no-repeat; background-size: 100%;"></div>
+				<div style="background: url('images/newcastle-logo.png') center center no-repeat; background-size: 100%;"></div>
+			</div>
+		</div>
+		<footer>
+			<div id="info">
+				<span>7214 Oberägeri, Grossregion Zürich, Switzerland</span>
+				<span>P: 401.116.8917</span>
+				<span><a href="#">Sitemap</a></span>
+				<span><a href="#search">Search Henerton School</a></span>
+			</div>
+			<div id="links">
+				<div id="media-links">
+					<div id="media-fb">
+						<div class="media-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="_1pbq" color="#ffffff"><path fill="#ffffff" fill-rule="evenodd" d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1
+            3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733
+            1.667-1.667
+            1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033
+            0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467
+            2.133v1.867H6v2.066h2V14z"></path></svg></div>
+            			<span>Follow</span>
+					</div>
+					<span>17,504 people are following Henerton School.</span>
+
+				</div>
+				<img src="images/sigil3.png" id="footer-logo" />
+				<div class="button" id="touch">Get in touch</div>
+			</div>
+		</footer>
+		<div id="subfooter">
+			<div id="subfooter-container">
+				<div class="sb-div">
+					<h2>School</h2>
+					<a href="./about">About the School</a>
+					<a href="./history">History</a>
+					<a href="./responsible">A Responsible School</a>
+					<a href="./prices">Prices and Awards</a>
+					<a href="./recruitment">Recruitment</a>
+					<a href="./official">Offical Acts</a>
+					<a href="./d">Diplomas Checking</a>
+					<a href="./news">News</a>
+					<a href="./press">Press Room</a>
+				</div>
+				<div class="sb-div">
+					<h2>Formations</h2>
+					<a href="./deparments">Deparments</a>
+					<a href="./admissions">Admissions</a>
+					<a href="./bachelor">Bachelor</a>
+					<a href="./engineer">Engineer</a>
+					<a href="./master">Master</a>
+					<a href="./doctorat">Doctorat</a>
+					<a href="./executive">Executive Master</a>
+					<a href="./exed">Executive Education</a>
+					<a href="./elearning">E-Learning</a>
+					<a href="./sciences">Sciences camp</a>
+				</div>
+				<div class="sb-div">
+					<h2>Research</h2>
+					<a href="./research">Research Center</a>
+					<a href="./themes">Themes</a>
+					<a href="./research">Research Initiative</a>
+					<a href="./institutionnals">Institutionnals Partners</a>
+					<a href="./ethir">Ethic</a>
+					<a href="./partners">Research Partners</a>
+					<a href="./research">Henerton Researchers</a>
+					<a href="./consulting">Henerton Consulting</a>
+					<a href="./publications">Publications</a>
+				</div>
+				<div class="sb-div">
+					<h2>Entrepreneurship & Innovation</h2>
+					<a href="./entrepreneurship">Entrepreneurship Education</a>
+					<a href="./companies">Companies Creation</a>
+					<a href="./technologies">Technologies Transfer</a>
+					<a href="./entrepreneurship">Entrepreneurship Talk</a>
+				</div>
+				<div class="sb-div">
+					<h2>International</h2>
+					<a href="./international">International Opennings</a>
+					<a href="./admissions">Studying at Henerton</a>
+					<a href="./abroad">Going Abroad</a>
+					<a href="./international">International Relationship Team</a>
+				</div>
+				<div class="sb-div">
+					<h2>Companies</h2>
+					<a href="./companies#recruiting">Recruiting our Students</a>
+					<a href="./companies#tax">Formations Tax</a>
+					<a href="./companies#teaching">Teaching and Research Chairs</a>
+					<a href="./companies#partners">Partners Research</a>
+					<a href="./companies#foundation">Henerton Foundation</a>
+				</div>
+				<div class="sb-div">
+					<h2>Campus</h2>
+					<a href="./campus">Henerton Campus</a>
+					<a href="./campus#life">Life on Campus</a>
+					<a href="./campus#library">School Library</a>
+					<a href="./campus#orientation">Orientation</a>
+					<a href="./campus#sports">Sports</a>
+					<a href="./campus#associations">Associations</a>
+					<a href="./campus#Communities">Communities</a>
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+</html>
