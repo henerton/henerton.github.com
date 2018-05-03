@@ -1080,6 +1080,16 @@ footer #info {
 	font-family: Arial, 'Droid Sans';
 }
 
+footer #info span:nth-child(2) {
+	font-size: 0.00001rem;
+}
+footer #info span:nth-child(2):after {
+	display: inline;
+	content: '+41 43 821 43 43';
+	font-size: 0.8rem !important;
+
+}
+
 #info a {
 	color: #fff;
 	text-decoration: none;
