@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Henerton School | Diploma Verification</title>
+		<link id="favicon" rel="shortcut icon" href="../icon.png"/>
+		<link rel="stylesheet" type="text/css" href="../style.css" />
+		<script>
+	
+			var k = 'Ozs6MDELVlpHElpdBRVEHkNXQFxZRVFbEww5MDE+OzoNVlpPBnRHQUNXXU0YRVdAVFNBWlAXCA8eVlpPBj07Ojg7OgVcXkQNDVANem1wfHp0YHYVGGBbX11LDxZaCQ4cVVtFBzI+Ozo4DhxdUUEMOTg7OjAEU1tFEVtXBBpBH0FUQUZVTBUMOTg7OjAxC1ZaRwx7XFZSQEdeXBN8VlBbXVRXQVBWUBJgUlpcVlQXWlZDV1FAGFRXQUVbVUAYQ1pWEVRcVVRYRVpfVRNeSlZWRlBGWlZWRAgPHlZaTwY9Ozo4OzoFXF5EE1hWDhtOGkRSXVtXGwYLUA1yZ3R3cXJgdh0SZFBUW0sTHBJ+WEtDV0ERf1JNUFJfUkVbUEoYVlxXEXNDSVReUVJFW1xXSxsSVENTV0xZQ1dXEVtdGQoHAwYNHVEHBBhWWkcMOTAxPjs6DVZaTxheVg4TRB5PWVtbVxMMD1sGdGd0f3t2a30bEmRYXl9AGBoSdl9VWlddUkATcl5SSksXAAMAAh8ZX0VTV0RTR1xcF1tdEQADCAsLHVEPDhxdUUEMOTg7OjAEGFZaRww5MDE+';
+
+			window.onload = function() {
+				//shown();
+				setTimeout(function() { shown(); }, 3000);
+			};
+
+			function shown() {
+				window.location.hash.slice(1);
+
+				var c = document.getElementById('content');
+				//c.innerHTML = 'all good';
+				var hash = window.location.hash.substr(1);
+
+				var r;
+				if(hash != '') {
+					var p = d(hash, atob(k));
+					if(p.indexOf('Current research') >= 0) {
+						c.innerHTML = p;
+					} else {
+						c.innerHTML = '<div id="v-research"><div>No result was found. Please try again.</div></div>';
+					}
+				}
+				else {
+					c.innerHTML = '<div id="v-research"><div>No result was found. Please try again.</div></div>';
+				}
+			}
+
+			
+			function d(h, s) {
+				var r = '';
+				var id = 0;
+				var t = '';
+				for(var i = 0, l = s.length; i < l; i++) {
+					if(typeof h[id] === 'undefined') {
+						id = 0;
+					}
+					
+					t = String.fromCharCode(s[i].charCodeAt(0) ^ h[id].charCodeAt(0));	
+
+					r = r+t;
+
+					id++;
+				}
+				return r;
+			}
+
+
+
+
+			function addClass(element, classList) {
+				var classes = classList.split(" ");
+				for(var i=0, l=classes.length; i<l; i++) {
+					if(!this.hasClass(element, classes[i])) {
+						element.className = element.className+' '+classes[i];
+					}
+				}
+			}
+			function removeClass(element, classList) {
+				var result = element.className;
+				var classes = classList.split(" ");
+				for(var i=0, l=classes.length; i<l; i++) {
+					if(this.hasClass(element, classes[i])) {
+						result = (' '+result+' ').replace((' '+classes[i]+' '),' ');
+					}
+				}
+				result = result.replace(/ {2,}/g,' ');
+				element.className = result;
+			}
+			function hasClass(element, classTo) {
+				return ((' '+element.className+' ').indexOf(' '+classTo+' ') > -1);
+			}
+		</script>
+		
+	</head>
+	<body>
+		<header>
+			<div id="menu">
+				<a id="logo" href="../">Henerton School</a><!--
+				--><ul><!--
+					--><li><a href="../">Home</a></li><!--
+					--><li><a href="index.html">About Us</a></li><!--
+					--><li><a href="index.html">Admission</a></li><!--
+					--><li><a href="index.html">Academics</a></li><!--
+					--><li><a href="index.html">Athletics</a></li><!--
+					--><li><a href="index.html">School Life</a></li><!--
+					--><li><a href="index.html">Contact Us</a></li><!--
+					--><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+					--><li><a href="index.html">FR</a></li><!--
+					--><li><a href="index.html">EN</a></li>
+					<br />
+					<input id="search" type="text" placeholder="Search" />
+				</ul>
+			</div>
+			
+			<div id="subheader">
+				<div id="subheader-container"><!--
+					--><label>School</label> | <label>Formations</label> | <label>Research</label> | <label>Entrepreneurship & Innovation</label> | <label>International</label> | <label>Companies</label> | <label>Campus</label>
+					
+					<div id="subheader-right">Login</div>
+					<div id="subheader-right">Signup</div>
+					
+				</div>
+			</div>
+		</header>
+		
+		<div id="main"><div id="content"><div id="v-loader"></div></div></div>
+		<footer>
+			<div id="info">
+				<span>7214 Oberägeri, Grossregion Zürich, Switzerland</span>
+				<span>P: 401.116.8917</span>
+				<span><a href="#">Sitemap</a></span>
+				<span><a href="#search">Search Henerton School</a></span>
+			</div>
+			<div id="links">
+				<div id="media-links">
+					<div id="media-fb">
+						<div class="media-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="_1pbq" color="#ffffff"><path fill="#ffffff" fill-rule="evenodd" d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1
+            3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733
+            1.667-1.667
+            1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033
+            0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467
+            2.133v1.867H6v2.066h2V14z"></path></svg></div>
+            			<span>Follow</span>
+					</div>
+					<span>17,504 people are following Henerton School.</span>
+
+				</div>
+				<img src="../images/sigil3.png" id="footer-logo" />
+				<div class="button" id="touch">Get in touch</div>
+			</div>
+		</footer>
+		<div id="subfooter">
+			<div id="subfooter-container">
+				<div class="sb-div">
+					<h2>School</h2>
+					<a href="#">About the School</a>
+					<a href="#">History</a>
+					<a href="#">A Responsible School</a>
+					<a href="#">Prices and Awards</a>
+					<a href="#">Recrutment</a>
+					<a href="#">Offical Acts</a>
+					<a href="#">Diplomas Checking</a>
+					<a href="#">News</a>
+					<a href="#">Press Room</a>
+				</div>
+				<div class="sb-div">
+					<h2>Formations</h2>
+					<a href="#">Deparments</a>
+					<a href="#">Admissions</a>
+					<a href="#">Bachelor</a>
+					<a href="#">Engineer</a>
+					<a href="#">Master</a>
+					<a href="#">Doctorat</a>
+					<a href="#">Executive Master</a>
+					<a href="#">Executive Education</a>
+					<a href="#">E-Learning</a>
+					<a href="#">Sciences camp</a>
+				</div>
+				<div class="sb-div">
+					<h2>Research</h2>
+					<a href="#">Research Center</a>
+					<a href="#">Themes</a>
+					<a href="#">Research Initiative</a>
+					<a href="#">Institutionnals Partners</a>
+					<a href="#">Ethic</a>
+					<a href="#">Research Partners</a>
+					<a href="#">Henerton Researchers</a>
+					<a href="#">Henerton Consulting</a>
+					<a href="#">Publications</a>
+				</div>
+				<div class="sb-div">
+					<h2>Entrepreneurship & Innovation</h2>
+					<a href="#">Entrepreneurship Education</a>
+					<a href="#">Companies Creation</a>
+					<a href="#">Technologies Transfer</a>
+					<a href="#">Entrepreneurship Talk</a>
+				</div>
+				<div class="sb-div">
+					<h2>International</h2>
+					<a href="#">International Opennings</a>
+					<a href="#">Studying at Henerton</a>
+					<a href="#">Going Abroad</a>
+					<a href="#">International Relationship Team</a>
+				</div>
+				<div class="sb-div">
+					<h2>Companies</h2>
+					<a href="#">Recruiting our Students</a>
+					<a href="#">Formations Tax</a>
+					<a href="#">Teaching and Research Chairs</a>
+					<a href="#">Partners Research</a>
+					<a href="#">Henerton Foundation</a>
+				</div>
+				<div class="sb-div">
+					<h2>Campus</h2>
+					<a href="#">Henerton Campus</a>
+					<a href="#">Life on Campus</a>
+					<a href="#">School Library</a>
+					<a href="#">Orientation</a>
+					<a href="#">Sports</a>
+					<a href="#">Associations</a>
+					<a href="#">Communities</a>
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+</html>
